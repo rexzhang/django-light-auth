@@ -1,6 +1,4 @@
-# PyPI Package Project Template
+# django-light-auto
 
-## Ref
-- https://packaging.python.org/guides/distributing-packages-using-setuptools
-- https://packaging.python.org/en/latest/distributing.html
-- https://github.com/pypa/sampleproject
+> Lightweight authentication with Django without models and databases
+
