@@ -4,7 +4,7 @@
 [![](https://img.shields.io/pypi/pyversions/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
 [![](https://img.shields.io/pypi/dm/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
 
-> Django lightweight authentication without models and databases, only depend SessionMiddleware
+> Django lightweight authentication without models and databases, only depend SessionMiddleware.
 
 # Install
 
@@ -19,7 +19,7 @@ pip3 install -U django-light-auth
 ```python
 INSTALLED_APPS = [
     # ...
-
+    # 'django.contrib.auth',
     'django_light_auth',
 
     # ...
@@ -35,6 +35,10 @@ MIDDLEWARE = [
     # ...
 ]
 
+# Session
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+# django-light-auth
 LIGHT_AUTH_VALIDATE_FUNC = 'your_app.auth.validate_func'
 ```
 
@@ -53,8 +57,11 @@ urlpatterns = [
 ```
 
 ## `your_app/auth/validate_func.py`
-example at `django_light_auth.light_auth_validate_func`
 ```python
+#
+# example at django_light_auth.light_auth_validate_func
+#
+
 from typing import Dict, Any
 
 from your_app.config import config
