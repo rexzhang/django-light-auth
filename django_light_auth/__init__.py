@@ -5,7 +5,7 @@ from .runtimes import (
 
     light_auth_validate_func,
 
-    SimpleAuthMiddleware,
+    LightAuthMiddleware,
 )
 from .views import (
     LoginView,

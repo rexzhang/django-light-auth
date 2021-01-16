@@ -61,7 +61,7 @@ def do_validate(data: Dict[str, Any]) -> bool:
 
 
 def light_auth_validate_func(data: Dict[str, Any]) -> bool:
-    """demo for setting.SIMPLE_AUTH_VALIDATE_FUNC"""
+    """demo for setting.LIGHT_AUTH_VALIDATE_FUNC"""
     if data.get('username', None) == data.get('password', None):
         return True
 
@@ -80,7 +80,7 @@ def validate_request(request: HttpRequest) -> bool:
     return False
 
 
-class SimpleAuthMiddleware:
+class LightAuthMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         # One-time configuration and initialization.
