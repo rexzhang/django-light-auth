@@ -1,28 +1,36 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-# Template: https://github.com/rexzhang/pypi-package-project-template/blob/master/setup.py
+# Template:
+# https://github.com/rexzhang/pypi-package-project-template/blob/master/setup.py
+
+from typing import List
 
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 
 # To use a consistent encoding
 from codecs import open
-from os import path
+from pathlib import Path
 
-import pypi_package_project as module
+import django_light_auth as module
 
-here = path.abspath(path.dirname(__file__))
+root_path = Path(__file__).parent
+requirements_path = root_path.joinpath('requirements')
 
 # Get the long description from the README file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(root_path.joinpath('README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 
 # Get install_requires from requirements.txt
-def _read_install_requires_from_requirements_txt(base_path, filename):
-    _install_requires = []
-    with open(path.join(base_path, filename), encoding='utf-8') as req_f:
+def _read_requires_from_requirements_txt(
+    base_path: Path, filename: str, ignore_base: bool = False
+) -> List[str]:
+    _requires = []
+    with open(
+        base_path.joinpath(filename).as_posix(), encoding='utf-8'
+    ) as req_f:
         lines = req_f.readlines()
         for line in lines:
             if line == '\n' or line == '' or line[0] == '#':
@@ -30,19 +38,28 @@ def _read_install_requires_from_requirements_txt(base_path, filename):
 
             words = line.rstrip('\n').split(' ')
             if words[0] == '-r':
-                _install_requires.extend(_read_install_requires_from_requirements_txt(
-                    base_path=base_path, filename=words[1]
-                ))
+                if ignore_base and words[1] == 'base.txt':
+                    continue
+
+                else:
+                    _requires.extend(
+                        _read_requires_from_requirements_txt(
+                            base_path=base_path, filename=words[1]
+                        )
+                    )
 
             else:
-                _install_requires.append(words[0])
+                _requires.append(words[0])
 
-    return _install_requires
+    return _requires
 
 
-install_requires = _read_install_requires_from_requirements_txt(
-    base_path=here, filename='requirements/base.txt'
+install_requires = _read_requires_from_requirements_txt(
+    base_path=requirements_path, filename='base.txt'
 )
+extras_require_dev = list(set(_read_requires_from_requirements_txt(
+    base_path=requirements_path, filename='dev.txt'
+)))
 
 # Setup
 setup(
@@ -136,7 +153,7 @@ setup(
     # project page. What does your project relate to?
     #
     # Note that this is a string of words separated by whitespace, not a list.
-    keywords='key1 key2',  # Optional
+    keywords='django auth',  # Optional
 
     # When your source code is in a subdirectory under the project root, e.g.
     # `src/`, it is necessary to specify the `package_dir` argument.
@@ -177,10 +194,10 @@ setup(
     #
     # Similar to `install_requires` above, these must be valid existing
     # projects.
-    extras_require={  # Optional
-        'dev': ['check-manifest'],
-        'test': ['coverage'],
-    },
+    # extras_require={  # Optional
+    #     'dev': ['check-manifest'],
+    #     'test': ['coverage'],
+    # },
 
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow
@@ -189,9 +206,9 @@ setup(
     #
     # For example, the following would provide a command called `sample` which
     # executes the function `main` from this package when invoked:
-    entry_points={
-        'console_scripts': [
-            'python_module_project=python_module_project:main',
-        ],
-    },
+    # entry_points={
+    #     'console_scripts': [
+    #         'python_module_project=python_module_project:main',
+    #     ],
+    # },
 )

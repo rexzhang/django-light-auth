@@ -1,4 +1,4 @@
-# django-light-auto
+# django-light-auth
 
-> Lightweight authentication with Django without models and databases
+> Django lightweight authentication without models and databases
 
