@@ -17,7 +17,7 @@ from .views import (
 default_app_config = 'django_light_auth.apps.DjangoLightAuthConfig'
 
 __name__ = 'django-light-auth'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 __author__ = 'Rex Zhang'
 __author_email__ = 'rex.zhang@gmail.com'
