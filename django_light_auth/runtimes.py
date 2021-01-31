@@ -25,9 +25,14 @@ def do_login(request: HttpRequest) -> str:
     session[TOKEN_KEY] = apps.get_app_config(
         'django_light_auth'
     ).token
-    session.set_expiry(
-        apps.get_app_config('django_light_auth').expiry
-    )
+    expiry = apps.get_app_config('django_light_auth').expiry
+    if expiry is not None:
+        # https://docs.djangoproject.com/en/3.1/topics/http/sessions/
+        # "If value is None,
+        # the session reverts to using the global session expiry policy."
+        session.set_expiry(
+            apps.get_app_config('django_light_auth').expiry
+        )
 
     return apps.get_app_config('django_light_auth').success_path
 
