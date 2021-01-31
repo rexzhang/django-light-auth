@@ -1,4 +1,6 @@
 from uuid import uuid4
+from datetime import datetime, timedelta
+from typing import Union
 
 from django.conf import settings
 from django.apps import AppConfig
@@ -16,11 +18,16 @@ class DjangoLightAuthConfig(AppConfig):
     allow_paths = set()
 
     token = uuid4().hex
+    # https://docs.djangoproject.com/en/3.1/topics/http/sessions/
+    expiry: Union[None, int, datetime, timedelta] = 3600  # 1 hour
 
     def ready(self):
+        # func
         value = getattr(settings, 'LIGHT_AUTH_VALIDATE_FUNC', '')
         if value:
             self.validate_func = value
+
+        # path
         value = getattr(settings, 'LIGHT_AUTH_LOGIN_PATH', '')
         if value:
             self.login_path = value.rstrip('/')
@@ -30,3 +37,15 @@ class DjangoLightAuthConfig(AppConfig):
 
         self.allow_paths.add(self.login_path)
         self.allow_paths.add(self.logout_path)
+
+        # expiry
+        value = getattr(settings, 'LIGHT_AUTH_EXPIRY')
+        if value is None:
+            # https://docs.djangoproject.com/en/3.1/topics/http/sessions/
+            # "If value is None,
+            # the session reverts to using the global session expiry policy."
+            self.expiry = None
+        elif isinstance(value, int) and value >= 0:
+            self.expiry = value
+        elif isinstance(value, (datetime, timedelta)):
+            self.expiry = value

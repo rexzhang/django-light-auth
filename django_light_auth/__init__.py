@@ -23,7 +23,6 @@ __author__ = 'Rex Zhang'
 __author_email__ = 'rex.zhang@gmail.com'
 __licence__ = 'MIT'
 
-__description__ = 'Django lightweight authentication ' \
-                  'without models and databases, ' \
-                  'only depend SessionMiddleware.'
+__description__ = "Django Lightweight Authentication without models and " \
+                  "databases, only depend on the Django's SessionMiddleware."
 __project_url__ = 'https://github.com/rexzhang/django-light-auth'

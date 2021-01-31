@@ -4,7 +4,7 @@
 [![](https://img.shields.io/pypi/pyversions/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
 [![](https://img.shields.io/pypi/dm/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
 
-> Django lightweight authentication without models and databases, only depend SessionMiddleware.
+> Django Lightweight Authentication without models and databases, only depend on the Django's SessionMiddleware.
 
 # Install
 

@@ -9,16 +9,32 @@ logger = logging.getLogger(__file__)
 TOKEN_KEY = 'light_auth_token'
 
 
+def _get_session_from_request(request: HttpRequest):
+    try:
+        session = request.__getattribute__('session')
+    except AttributeError:
+        raise Exception(
+            'Missed django.contrib.sessions.middleware.SessionMiddleware, '
+            'django-light-auth depend it.'
+        )
+    return session
+
+
 def do_login(request: HttpRequest) -> str:
-    request.session[TOKEN_KEY] = apps.get_app_config(
+    session = _get_session_from_request(request)
+    session[TOKEN_KEY] = apps.get_app_config(
         'django_light_auth'
     ).token
+    session.set_expiry(
+        apps.get_app_config('django_light_auth').expiry
+    )
 
     return apps.get_app_config('django_light_auth').success_path
 
 
 def do_logout(request: HttpRequest) -> str:
-    request.session[TOKEN_KEY] = False
+    session = _get_session_from_request(request)
+    session[TOKEN_KEY] = False
 
     return apps.get_app_config('django_light_auth').login_path
 
@@ -73,7 +89,8 @@ def validate_request(request: HttpRequest) -> bool:
     if path in apps.get_app_config('django_light_auth').allow_paths:
         return True
 
-    token = request.session.get(TOKEN_KEY, '')
+    session = _get_session_from_request(request)
+    token = session.get(TOKEN_KEY, '')
     if token == apps.get_app_config('django_light_auth').token:
         return True
 
