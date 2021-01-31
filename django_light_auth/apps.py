@@ -39,7 +39,7 @@ class DjangoLightAuthConfig(AppConfig):
         self.allow_paths.add(self.logout_path)
 
         # expiry
-        value = getattr(settings, 'LIGHT_AUTH_EXPIRY')
+        value = getattr(settings, 'LIGHT_AUTH_EXPIRY', None)
         if value is None:
             # https://docs.djangoproject.com/en/3.1/topics/http/sessions/
             # "If value is None,
