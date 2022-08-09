@@ -1,19 +1,19 @@
 from django import forms
-from django.views.generic import View, FormView
-from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.views.generic import FormView, View
 
-from .runtimes import do_login, do_logout, do_validate
+from django_light_auth.runtimes import do_login, do_logout, do_validate
 
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
-    # next = forms.CharField()
+    # next = forms.CharField() # TODO
 
 
 class LoginView(FormView):
-    template_name = 'django_light_auth/login.html'
+    template_name = "django_light_auth/login.html"
     form_class = LoginForm
     initial = dict()
 
@@ -27,10 +27,11 @@ class LoginView(FormView):
             return HttpResponseRedirect(self.success_url)
 
         messages.add_message(
-            self.request, messages.ERROR,
-            'Invalid username and/or password! Please try again.'
+            self.request,
+            messages.ERROR,
+            "Invalid username and/or password! Please try again.",
         )
-        self.initial['username'] = form.cleaned_data['username']
+        self.initial["username"] = form.cleaned_data["username"]
         return HttpResponseRedirect(self.request.path)
 
 

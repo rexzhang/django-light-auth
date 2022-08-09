@@ -85,3 +85,8 @@ from django_light_auth import LoginView as LoginViewAbs
 class LoginView(LoginViewAbs):
     template_name = 'your_app/login.html'
 ```
+
+# History
+
+## v0.2.2 - 20220809
+- Compatible Django 4.1+
