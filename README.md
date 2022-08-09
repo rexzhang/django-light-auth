@@ -12,9 +12,11 @@
 pip3 install -U django-light-auth
 ```
 
-# Basic Usage
+# Usage
 
-## `settings.py`
+## Basic Usage
+
+### `settings.py`
 
 ```python
 INSTALLED_APPS = [
@@ -42,7 +44,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 LIGHT_AUTH_VALIDATE_FUNC = 'your_app.auth.validate_func'
 ```
 
-## `urls.py`
+### `urls.py`
 
 ```python
 from django.urls import path
@@ -56,7 +58,7 @@ urlpatterns = [
 ]
 ```
 
-## `your_app/auth/validate_func.py`
+### `your_app/auth/validate_func.py`
 ```python
 #
 # example at django_light_auth.light_auth_validate_func
@@ -75,7 +77,7 @@ def light_auth_validate_func(data: Dict[str, Any]) -> bool:
     return False
 ```
 
-# Custom Login View 
+## Custom Login View 
 
 `your_login_view.py`
 ```python
