@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django_light_auth import LoginView, LogoutView
+
+from example.views import TestView
 
 urlpatterns = [
     # path("admin/", admin.site.urls),
+    path("", TestView.as_view()),
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ]

@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     # "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_light_auth",
+    "django_light_auth.apps.DjangoLightAuthConfig",
 ]
 
 MIDDLEWARE = [
@@ -82,6 +82,8 @@ WSGI_APPLICATION = "example.wsgi.application"
 #     }
 # }
 
+# Session
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
