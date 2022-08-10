@@ -22,7 +22,7 @@ pip3 install -U django-light-auth
 INSTALLED_APPS = [
     # ...
     # 'django.contrib.auth',
-    'django_light_auth',
+    'django_light_auth.apps.DjangoLightAuthConfig',
 
     # ...
 ]
