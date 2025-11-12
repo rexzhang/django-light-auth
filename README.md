@@ -93,6 +93,10 @@ class LoginView(LoginViewAbs):
 
 ## History
 
+### 0.2.3 - 20251112
+
+- Maintenance release
+
 ### v0.2.2 - 20220809
 
 - Compatible Django 4.1+

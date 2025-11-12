@@ -9,4 +9,4 @@ from django_light_auth.views import LoginForm, LoginView, LogoutView  # noqa F40
 
 default_app_config = "django_light_auth.apps.DjangoLightAuthConfig"
 
-__version__ = "0.2.2"
+__version__ = "0.2.3"
