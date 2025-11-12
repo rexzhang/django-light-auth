@@ -1,7 +1,7 @@
 # django-light-auth
 
 [![PyPI - Version](https://img.shields.io/pypi/v/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django-light-auth)](https://pypi.org/project/django-light-auth/)
+![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https://raw.githubusercontent.com/rexzhang/django-light-auth/main/pyproject.toml)
 [![PyPI - Django Version](https://img.shields.io/pypi/djversions/django-light-auth)](https://pypi.org/project/django-light-auth/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
 

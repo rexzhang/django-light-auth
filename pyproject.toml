@@ -17,7 +17,6 @@ keywords = ["django", "auth"]
 classifiers = [
     "Development Status :: 4 - Beta",
     'Framework :: Django :: 5.0',
-    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
 [project.urls]
