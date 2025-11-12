@@ -1,2 +1,0 @@
-# base 3rd package
-django

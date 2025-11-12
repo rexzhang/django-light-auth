@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from typing import Union
 from uuid import uuid4
 
 from django.apps import AppConfig
@@ -20,7 +19,7 @@ class DjangoLightAuthConfig(AppConfig):
 
     token = uuid4().hex
     # https://docs.djangoproject.com/en/3.1/topics/http/sessions/
-    expiry: Union[None, int, datetime, timedelta] = 3600  # 1 hour
+    expiry: None | int | datetime | timedelta = 3600  # 1 hour
 
     def ready(self):
         # func

@@ -1,0 +1,2 @@
+# https://docs.djangoproject.com/en/dev/faq/install/#what-python-version-can-i-use-with-django
+django>=5.0

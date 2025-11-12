@@ -1,22 +1,23 @@
 # django-light-auth
 
-[![](https://img.shields.io/pypi/v/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
-[![](https://img.shields.io/pypi/pyversions/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
-[![](https://img.shields.io/pypi/dm/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
+[![PyPI - Version](https://img.shields.io/pypi/v/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django-light-auth)](https://pypi.org/project/django-light-auth/)
+[![PyPI - Django Version](https://img.shields.io/pypi/djversions/django-light-auth)](https://pypi.org/project/django-light-auth/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/django-light-auth.svg)](https://pypi.org/project/django-light-auth/)
 
 > Django Lightweight Authentication without models and databases, only depend on the signed cookies and the Django's SessionMiddleware.
 
-# Install
+## Install
 
 ```shell
 pip3 install -U django-light-auth
 ```
 
-# Usage
+## Usage
 
-## Basic Usage
+### Basic Usage
 
-### `settings.py`
+#### `settings.py`
 
 ```python
 INSTALLED_APPS = [
@@ -44,7 +45,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 LIGHT_AUTH_VALIDATE_FUNC = 'your_app.auth.validate_func'
 ```
 
-### `urls.py`
+#### `urls.py`
 
 ```python
 from django.urls import path
@@ -58,7 +59,8 @@ urlpatterns = [
 ]
 ```
 
-### `your_app/auth/validate_func.py`
+#### `your_app/auth/validate_func.py`
+
 ```python
 #
 # example at django_light_auth.light_auth_validate_func
@@ -77,9 +79,10 @@ def light_auth_validate_func(data: Dict[str, Any]) -> bool:
     return False
 ```
 
-## Custom Login View 
+### Custom Login View
 
 `your_login_view.py`
+
 ```python
 from django_light_auth import LoginView as LoginViewAbs
 
@@ -88,7 +91,8 @@ class LoginView(LoginViewAbs):
     template_name = 'your_app/login.html'
 ```
 
-# History
+## History
 
-## v0.2.2 - 20220809
+### v0.2.2 - 20220809
+
 - Compatible Django 4.1+

@@ -3,3 +3,32 @@
 # https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
 requires = ["setuptools>=40.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version", "dependencies"]
+
+name = "django-light-auth"
+description = "Django Lightweight Authentication without models and databases, only depend on the signed cookies and the Django's SessionMiddleware."
+readme = "README.md"
+requires-python = ">=3.10"
+license-files = ["LICENSE"]
+authors = [{ name = "Rex Zhang" }, { email = "rex.zhang@gmail.com" }]
+keywords = ["django", "auth"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    'Framework :: Django :: 5.0',
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+homepage = "https://github.com/rexzhang/django-light-auth"
+
+[tool.setuptools]
+packages = ["django_light_auth"]
+
+[tool.setuptools.dynamic]
+version = { attr = "django_light_auth.__version__" }
+dependencies = { file = "requirements.d/base.txt" }
+
+[tool.isort]
+profile = "black"
